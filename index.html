@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yoin</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">yoin</div>
+
+      <div class="transport" role="group" aria-label="Transport">
+        <button id="btn-record" class="tbtn record" title="Record (R)" aria-label="Record">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" /></svg>
+        </button>
+        <button id="btn-play" class="tbtn play" title="Play (Space)" aria-label="Play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+        </button>
+        <button id="btn-stop" class="tbtn stop" title="Stop (Space). Press again to go back to the start" aria-label="Stop">
+          <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
+        </button>
+      </div>
+
+      <div class="clock" id="clock">0:00.0</div>
+
+      <div class="spacer"></div>
+
+      <button id="btn-export" class="btn" title="Save the take as a WAV file">Export WAV</button>
+      <button id="btn-settings" class="devices" title="Pick your microphone and speakers or headphones">
+        <span class="dev-row">
+          <svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1a7 7 0 0 0 6-6.9z"/></svg>
+          <span id="dev-in">No input</span>
+        </span>
+        <span class="dev-row">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+          <span id="dev-out">No output</span>
+        </span>
+      </button>
+    </header>
+
+    <main class="tracks">
+      <section class="track" id="track-1">
+        <div class="track-head">
+          <div class="track-name">Track 1</div>
+          <div class="track-sub" id="input-name">No input</div>
+          <div class="meter" title="Input level"><div class="meter-fill" id="meter-in"></div></div>
+        </div>
+        <div class="lane" id="lane">
+          <canvas id="wave"></canvas>
+          <div class="empty-hint" id="empty-hint"><span>Press <kbd>R</kbd> or the red button to record your idea</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="statusbar">
+      <span id="status-devices">Starting audio…</span>
+      <span class="spacer"></span>
+      <span id="status-msg"></span>
+    </footer>
+
+    <dialog id="settings">
+      <form method="dialog" class="settings-form">
+        <h2>Audio settings</h2>
+        <label>
+          Input (microphone or interface)
+          <select id="sel-input"></select>
+        </label>
+        <label>
+          Output (speakers or headphones)
+          <select id="sel-output"></select>
+        </label>
+        <p class="hint">Tip: headphones avoid your speakers bleeding into the recording.</p>
+        <div class="actions">
+          <button value="cancel" class="btn">Cancel</button>
+          <button value="apply" class="btn primary" id="btn-apply">Apply</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

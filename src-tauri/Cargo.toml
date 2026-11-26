@@ -1,0 +1,19 @@
+[package]
+name = "yoin"
+version = "0.1.0"
+description = "Yoin: get the idea in your head into music"
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "yoin_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+yoin-engine = { path = "../crates/yoin-engine" }
